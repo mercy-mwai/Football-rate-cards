@@ -176,3 +176,17 @@ Object.freeze(myFavoriteFootballTeam);
 const {sport,team,year,players}=myFavoriteFootballTeam;
 const{coachName}=myFavoriteFootballTeam.headCoach;
 typeOfSport.textContent=sport;
+teamName.textContent=team;
+worldCupYear.textContent=year;
+headCoach.textContent=coachName;
+
+const setPlayerCards=( arr="players")=>{
+    playerCards.innerHTML += arr.map(({name,position,isCaptain,number,nickName,}) => {
+        `<div class="player-cards><h2>${isCaptain?"(captain)":""}${name}</h2>
+        <p> position:${position}</p>
+
+        </div>"
+
+        `
+    })
+};
