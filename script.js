@@ -180,13 +180,20 @@ teamName.textContent=team;
 worldCupYear.textContent=year;
 headCoach.textContent=coachName;
 
-const setPlayerCards=( arr="players")=>{
+const setPlayerCards=( arr=players)=>{
     playerCards.innerHTML += arr.map(({name,position,isCaptain,number,nickName,}) => {
         `<div class="player-cards><h2>${isCaptain?"(captain)":""}${name}</h2>
         <p> position:${position}</p>
-
+        <P>number: ${number}</P>
+        <p>Nickname:${nickname!==null?"nickname":"N/A"}</P>
         </div>"
 
         `
-    })
+    }).join("");
 };
+playersDropdownList.addEventListener("change" ,(e)=>{
+playerCards.innerHTML="";
+switch(e.target.value){
+case"nickname":
+}
+});
