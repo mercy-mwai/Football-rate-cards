@@ -179,35 +179,46 @@ typeOfSport.textContent=sport;
 teamName.textContent=team;
 worldCupYear.textContent=year;
 headCoach.textContent=coachName;
-
-const setPlayerCards=( arr=players)=>{
-    playerCards.innerHTML += arr.map(({name,position,isCaptain,number,nickName,}) => {
-        `<div class="player-cards><h2>${isCaptain?"(captain)":""}${name}</h2>
-        <p> position:${position}</p>
-        <P>number: ${number}</P>
-        <p>Nickname:${nickname!==null?"nickname":"N/A"}</P>
-        </div>"
-
+const setPlayerCards = (arr = players) => {
+  playerCards.innerHTML += arr
+    .map(
+      ({ name, position, number, isCaptain, nickname }) =>
         `
-    }).join("");
+        <div class="player-card">
+          <h2>${isCaptain ? "(Captain)" : ""} ${name}</h2>
+          <p>Position: ${position}</p>
+          <p>Number: ${number}</p>
+          <p>Nickname: ${nickname !== null ? nickname : "N/A"}</p>
+        </div>
+      `
+    )
+    .join("");
 };
-playersDropdownList.addEventListener("change" ,(e)=>{
-playerCards.innerHTML="";
-switch (e.target.value) {
-  case "nickname":
-    setPlayerCards(players.filter((player) => player.nickname !== null));
-    break;
-    case"foward":
-   setPlayerCards(players.filter((player)=>player.position ==="foward"));
-   break;
-   case "midfielder":
-    setPlayerCards(players.filter((player)=>player.position==="midfielder"));
-    break;
-    case "defender":
-      setPlayerCards(players.filter((player)=>player.position==="defender"));
+
+playersDropdownList.addEventListener("change", (e) => {
+  playerCards.innerHTML = "";
+
+  switch (e.target.value) {
+    case "nickname":
+      setPlayerCards(players.filter((player) => player.nickname !== null));
       break;
-      case "goalkeeper":
-        setPlayerCards(players.filter((player)=>player.position==="goalkeeper"));
-        break; 
-}
-});
+    case "forward":
+      setPlayerCards(players.filter((player) => player.position === "forward"));
+      break;
+    case "midfielder":
+      setPlayerCards(
+        players.filter((player) => player.position === "midfielder")
+      );
+      break;
+    case "defender":
+      setPlayerCards(
+        players.filter((player) => player.position === "defender")
+      );
+      break;
+    case "goalkeeper":
+      setPlayerCards(
+        players.filter((player) => player.position === "goalkeeper")
+      );
+      break;
+    }
+  });
